@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+	<project name="ProbandoAnt" default="default" basedir=".">
+
+<!--propiedades globales del proyecto -->
+
+	<property name="fuente" value="./src" />
+
+	<property name="destino" value="./classes" />
+
+<!-- Compilador -->
+
+	<target name="fumar">
+		<mkdir dir="${destino}"/>
+		<javac srcdir="${fuente}" destdir="${destino}" />
+	</target>
+
+<!-- Ejecutable -->
+
+	<target name="dale">
+		<java classname="HelloWorld">
+			<classpath path="${destino}"/>
+		</java>
+	</target>
+
+<!-- Limpiador -->
+
+	<target name="baño">
+		<delete dir="${destino}"/>
+	</target>
+
+<!-- Documentar -->
+
+	<target name="papeles">
+		<javadoc destdir="${destino}"
+        		 author="true"
+        		 version="true"
+         		 use="true"
+        		 windowtitle="Probando esta API de aquí">
+
+			 <fileset dir="src" defaultexcludes="yes">
+    <include name="**"/>
+
+  </fileset>
+
+		  <doctitle><![CDATA[<h1>Test</h1>]]></doctitle>
+  <bottom><![CDATA[<i>Copyright &#169; 2000 Dummy Corp. All Rights Reserved.</i>]]></bottom>
+  <tag name="todo" scope="all" description="To do:"/>
+  <group title="Group 1 Packages" packages="com.dummy.test.a*"/>
+  <group title="Group 2 Packages" packages="com.dummy.test.b*:com.dummy.test.c*"/>
+  <link offline="true" href="https://docs.oracle.com/javase/8/docs/api/" packagelistLoc="C:\tmp"/>
+  <link href="https://docs.oracle.com/javase/8/docs/api/"/>
+		</javadoc>
+	</target>
+
+<!-- Proceso Completo -->
+
+	<target name="default" depends="baño, fumar, dale"/>
+
+</project>
